@@ -7,7 +7,7 @@ export default class HomeScreen extends Component {
             <div>
                 <h1>Welcome to the Trivia Challenge!</h1>
 
-                <p>You will be presented with 10 True or False Questions</p>
+                <p>You will be presented with 10 True or False questions.</p>
 
                 <p>Can you score 100%?</p>
                 
