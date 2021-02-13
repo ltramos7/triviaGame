@@ -1,5 +1,3 @@
-import logo from './logo.svg';
-import './App.css';
 import React, { Component } from 'react'
 import {Route, BrowserRouter as Router} from 'react-router-dom'
 import QuizScreen from './components/QuizScreen/index'
@@ -18,17 +16,3 @@ export default class App extends Component {
     )
   }
 }
-
-
-// function App() {
-//   return (
-    
-//       <Router>
-//         <Route exact path="/" component={HomeScreen}/>
-//         <Route path="/quiz" component={QuizScreen}/>
-//       </Router>
-    
-//   );
-// }
-
-// export default App;
