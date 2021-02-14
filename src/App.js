@@ -21,12 +21,11 @@ export default class App extends Component {
   }
 
   render() {
-    console.log(this.state.triviaData)
     return (
       <div>
         <Router>
           <Route exact path="/" component={HomeScreen}/>
-          <Route path="/quiz" component={QuizScreen}/>
+          <Route path="/quiz" render={() => <QuizScreen triviaData={this.state.triviaData}/>}/>
         </Router>
       </div>
     )
