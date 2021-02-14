@@ -1,6 +1,20 @@
 import React, { Component } from 'react'
 
 export default class QuizScreen extends Component {
+
+    selectRandomQuestion = () => {
+        console.log(this.props.triviaData.length)
+        let questionQuanity = this.props.triviaData.length
+
+        let randomIndex = Math.floor(Math.random()*questionQuanity)
+
+        let randomQuestion = this.props.triviaData[randomIndex]
+
+        console.log(randomQuestion)
+
+    }
+
+
     render() {
         return (
             <div>
@@ -15,7 +29,7 @@ export default class QuizScreen extends Component {
                 </div>
 
                 <div className="answer-options">
-                    <button>True</button>
+                    <button onClick={this.selectRandomQuestion}>True</button>
                     <button>False</button>
                 </div>
             </div>
