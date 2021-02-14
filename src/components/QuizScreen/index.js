@@ -1,9 +1,23 @@
 import React, { Component } from 'react'
+import axios from 'axios'
+
 
 export default class QuizScreen extends Component {
 
+    constructor(props){
+        super(props);
+        this.state = {
+          triviaData : []
+        }
+    }
+    
+    componentDidMount(){
+        axios.get("https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean")
+        .then(resp => this.setState({triviaData: resp.data.results}))
+    }
+
     selectRandomQuestion = () => {
-        let triviaData = this.props.triviaData
+        let triviaData = this.state.triviaData
         
         let questionQuanity = triviaData.length
         
@@ -13,9 +27,7 @@ export default class QuizScreen extends Component {
 
         console.log("random question", randomQuestion)
         console.log("second round", triviaData)
-
     }
-
 
     render() {
         return (
