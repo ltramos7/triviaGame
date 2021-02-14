@@ -3,14 +3,16 @@ import React, { Component } from 'react'
 export default class QuizScreen extends Component {
 
     selectRandomQuestion = () => {
-        console.log(this.props.triviaData.length)
-        let questionQuanity = this.props.triviaData.length
-
+        let triviaData = this.props.triviaData
+        
+        let questionQuanity = triviaData.length
+        
         let randomIndex = Math.floor(Math.random()*questionQuanity)
 
-        let randomQuestion = this.props.triviaData[randomIndex]
+        let randomQuestion = triviaData.splice(randomIndex, 1) // question is also removed from array to prevent duplicate question
 
-        console.log(randomQuestion)
+        console.log("random question", randomQuestion)
+        console.log("second round", triviaData)
 
     }
 
