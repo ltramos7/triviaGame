@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 export default class QuestionCard extends Component {
 
-    
+
     render() {
         return (
             <div className="question-card">
@@ -17,8 +17,8 @@ export default class QuestionCard extends Component {
                 </div>
 
                 <div className="answer-options">
-                    <button>True</button>
-                    <button>False</button>
+                    <button onClick={this.props.retrieveNewRandomQuestion}>True</button>
+                    <button onClick={this.props.retrieveNewRandomQuestion}>False</button>
                 </div>
             </div>
         )

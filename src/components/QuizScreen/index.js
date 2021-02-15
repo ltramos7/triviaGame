@@ -32,10 +32,25 @@ export default class QuizScreen extends Component {
     
     }
 
+    retrieveNewRandomQuestion = () => {
+        let triviaData = this.state.triviaData
+
+        let questionQuanity = triviaData.length
+        
+        let randomIndex = Math.floor(Math.random()*questionQuanity)
+
+        let randomQuestion = triviaData.splice(randomIndex, 1) // question is also removed from array to prevent duplicate question
+
+        this.setState({
+            randomQuestion: randomQuestion[0] 
+        })
+
+    }
+
     render() {
         return (
             <div>
-                <QuestionCard randomQuestion={this.state.randomQuestion}/>
+                <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion}/>
             </div>
         )
     }
