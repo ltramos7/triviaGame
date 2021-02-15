@@ -9,9 +9,10 @@ export default class QuizScreen extends Component {
         super(props);
         this.state = {
             triviaData: [],
-            randomQuestion: {}
+            randomQuestion: {},
+            questionCount: 1
         }
-    }
+    }      
 
     componentDidMount = () => {
         axios.get("https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean")
@@ -42,7 +43,8 @@ export default class QuizScreen extends Component {
         let randomQuestion = triviaData.splice(randomIndex, 1) // question is also removed from array to prevent duplicate question
 
         this.setState({
-            randomQuestion: randomQuestion[0] 
+            randomQuestion: randomQuestion[0],
+            questionCount: this.state.questionCount + 1
         })
 
     }
@@ -50,7 +52,7 @@ export default class QuizScreen extends Component {
     render() {
         return (
             <div>
-                <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion}/>
+                <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion} questionCount={this.state.questionCount}/>
             </div>
         )
     }

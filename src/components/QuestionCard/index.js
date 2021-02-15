@@ -13,7 +13,7 @@ export default class QuestionCard extends Component {
                     <h1>{this.props.randomQuestion.question}</h1>
                 </div>
                 <div className="question-number-tracker">
-                    <h1>1 of 10</h1>
+                    <h1>{this.props.questionCount} of 10</h1>
                 </div>
 
                 <div className="answer-options">
