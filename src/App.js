@@ -1,12 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import {Route, BrowserRouter as Router} from 'react-router-dom'
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Test</h1>
-    </div>
-  );
+import QuizScreen from './components/QuizScreen/index'
+import HomeScreen from './components/HomeScreen/index'
+
+
+
+
+export default class App extends Component {
+
+  render() {
+    return (
+      <div>
+        <Router>
+          <Route exact path="/" component={HomeScreen}/>
+          <Route path="/quiz" component={QuizScreen}/>
+        </Router>
+      </div>
+    )
+  }
 }
-
-export default App;
