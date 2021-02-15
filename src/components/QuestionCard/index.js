@@ -4,7 +4,6 @@ export default class QuestionCard extends Component {
 
     
     render() {
-        console.log(this.props.randomQuestion)
         return (
             <div className="question-card">
                 <div className="question-category">

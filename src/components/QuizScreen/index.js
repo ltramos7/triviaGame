@@ -36,7 +36,6 @@ export default class QuizScreen extends Component {
         return (
             <div>
                 <QuestionCard randomQuestion={this.state.randomQuestion}/>
-                {/* {this.state.randomQuestion ? <QuestionCard randomQuestion={this.state.randomQuestion} selectRandomQuestion={this.selectRandomQuestion}/> : "Quiz Screen not working"} */}
             </div>
         )
     }
