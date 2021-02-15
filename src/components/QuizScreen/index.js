@@ -33,11 +33,10 @@ export default class QuizScreen extends Component {
     }
 
     render() {
-        console.log(this.state)    
         return (
             <div>
+                <QuestionCard randomQuestion={this.state.randomQuestion}/>
                 {/* {this.state.randomQuestion ? <QuestionCard randomQuestion={this.state.randomQuestion} selectRandomQuestion={this.selectRandomQuestion}/> : "Quiz Screen not working"} */}
-                {/* <button onClick={this.selectRandomQuestion}>Test</button> */}
             </div>
         )
     }
