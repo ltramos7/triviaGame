@@ -3,6 +3,8 @@ import QuestionCard from '../QuestionCard';
 import ResultsScreen from '../ResultsScreen'
 
 import axios from 'axios'
+import { BrowserRouter as Router } from "react-router-dom";
+import { Route, Redirect } from 'react-router-dom';
 
 export default class QuizScreen extends Component {
 
@@ -59,7 +61,16 @@ export default class QuizScreen extends Component {
         if(this.state.triviaData.length >= 0 && this.state.randomQuestion !== undefined){
             return  <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion} questionCount={this.state.questionCount} checkAnswer={this.checkAnswer} handleQuizComplete={this.handleQuizComplete}/> 
         } else{
-            return  <ResultsScreen/>
+            return  (
+                <div>
+                    <Router>
+                        <Route exact path="/results" component={ResultsScreen}/>
+                        <Redirect from="/quiz" to="/results"/>
+                    </Router>
+                </div>
+               
+            )
+                
         }
         // need to factor in quiz complete or not to attempt rerouting
     }
