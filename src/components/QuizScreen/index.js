@@ -77,14 +77,13 @@ export default class QuizScreen extends Component {
 
     componentDidUpdate = (prevProps, prevState) => {
         if(prevState.questionCount !== this.state.questionCount ){
-            if(this.state.triviaData.length === 0){
+            if(this.state.questionCount > 10){
                 this.setState({quizComplete: true})
             }
         }
     }
 
     render() {
-        
         // let whichPage
         // whichPage = this.state.triviaData.length >= 0 && this.state.randomQuestion !== undefined ? <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion} questionCount={this.state.questionCount} checkAnswer={this.checkAnswer}/> : <ResultsScreen/>
         return (
