@@ -49,10 +49,15 @@ export default class QuizScreen extends Component {
 
     }
 
+    checkAnswer = (event) => {
+        event.target.value == this.state.randomQuestion.correct_answer ? console.log("Right") : console.log("Wrong")
+    }
+
+
     render() {
         return (
             <div>
-                <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion} questionCount={this.state.questionCount}/>
+                <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion} questionCount={this.state.questionCount} checkAnswer={this.checkAnswer}/>
             </div>
         )
     }

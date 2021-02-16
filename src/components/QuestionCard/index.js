@@ -17,8 +17,8 @@ export default class QuestionCard extends Component {
                 </div>
 
                 <div className="answer-options">
-                    <button onClick={this.props.retrieveNewRandomQuestion}>True</button>
-                    <button onClick={this.props.retrieveNewRandomQuestion}>False</button>
+                    <button value="True" onClick={(event) => {this.props.retrieveNewRandomQuestion(); this.props.checkAnswer(event);}}>True</button>
+                    <button value="False" onClick={(event) => {this.props.retrieveNewRandomQuestion(); this.props.checkAnswer(event);}}>False</button>
                 </div>
             </div>
         )
