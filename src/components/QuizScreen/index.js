@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import QuestionCard from '../QuestionCard';
+import ResultsScreen from '../ResultsScreen'
+
 import axios from 'axios'
 
 export default class QuizScreen extends Component {
@@ -52,10 +54,14 @@ export default class QuizScreen extends Component {
     }
 
     render() {
-        
+        console.log(this.state.triviaData.length)
+        console.log(this.state.randomQuestion)
+        let whichPage
+        whichPage = this.state.triviaData.length >= 0 && this.state.randomQuestion !== undefined ? <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion} questionCount={this.state.questionCount} checkAnswer={this.checkAnswer}/> : <ResultsScreen/>
         return (
             <div>
-                <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion} questionCount={this.state.questionCount} checkAnswer={this.checkAnswer}/>
+                {whichPage}
+                {/* <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion} questionCount={this.state.questionCount} checkAnswer={this.checkAnswer}/> */}
             </div>
         )
     }
