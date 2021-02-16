@@ -40,8 +40,8 @@ export default class QuestionCard extends Component {
                 <div className="question-category">
                    <h1>{this.props.randomQuestion.category}</h1> 
                 </div>
-                <div className="actual-question">
-                    <h1>{this.props.randomQuestion.question}</h1>
+                <div className="actual-question" >
+                    <h1 dangerouslySetInnerHTML={{__html: this.props.randomQuestion.question}}></h1>
                 </div>
                 <div className="question-number-tracker">
                     <h1>{this.props.questionCount} of 10</h1>
