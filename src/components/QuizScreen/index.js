@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Redirect } from 'react-router'
+import {Route, BrowserRouter as Router} from 'react-router-dom'
 import QuestionCard from '../QuestionCard';
 import axios from 'axios'
 
@@ -40,27 +40,22 @@ export default class QuizScreen extends Component {
 
         let questionQuanity = triviaData.length
 
-        if(questionQuanity > 0){
+        let randomIndex = Math.floor(Math.random()*questionQuanity)
 
-            let randomIndex = Math.floor(Math.random()*questionQuanity)
+        let randomQuestion = triviaData.splice(randomIndex, 1) // question is also removed from array to prevent duplicate question
 
-            let randomQuestion = triviaData.splice(randomIndex, 1) // question is also removed from array to prevent duplicate question
-
-            this.setState({
-                randomQuestion: randomQuestion[0],
-                questionCount: this.state.questionCount + 1
-            })
-        }else {
-            console.log("Need to jump to Results Screen")
-        }        
+        this.setState({
+            randomQuestion: randomQuestion[0],
+             questionCount: this.state.questionCount + 1
+         })       
     }
 
     checkAnswer = (event) => {
         event.target.value === this.state.randomQuestion.correct_answer ? console.log("Right") : console.log("Wrong")
     }
 
-
     render() {
+        
         return (
             <div>
                 <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion} questionCount={this.state.questionCount} checkAnswer={this.checkAnswer}/>

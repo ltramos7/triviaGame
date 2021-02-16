@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
-
+import ResultsScreen from '../ResultsScreen'
 export default class QuestionCard extends Component {
 
 
     render() {
-        return (
-            <div className="question-card">
+        let question
+        question = this.props.questionCount < 11 ? 
+        (<div className="question-card">
                 <div className="question-category">
                    <h1>{this.props.randomQuestion.category}</h1> 
                 </div>
@@ -20,6 +21,11 @@ export default class QuestionCard extends Component {
                     <button value="True" onClick={(event) => {this.props.retrieveNewRandomQuestion(); this.props.checkAnswer(event);}}>True</button>
                     <button value="False" onClick={(event) => {this.props.retrieveNewRandomQuestion(); this.props.checkAnswer(event);}}>False</button>
                 </div>
+        </div>) :
+            <ResultsScreen/>
+        return (
+            <div>
+                {question} 
             </div>
         )
     }
