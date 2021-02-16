@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
+import { Redirect } from 'react-router'
 import QuestionCard from '../QuestionCard';
 import axios from 'axios'
+
 
 
 export default class QuizScreen extends Component {
@@ -18,7 +20,6 @@ export default class QuizScreen extends Component {
         axios.get("https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean")
           .then(resp => this.setState({triviaData: resp.data.results, randomQuestion: this.selectRandomQuestion(resp.data.results)}))
     }
-   
 
     selectRandomQuestion = (results) => {
         let triviaData = results
@@ -34,23 +35,28 @@ export default class QuizScreen extends Component {
     }
 
     retrieveNewRandomQuestion = () => {
+
         let triviaData = this.state.triviaData
 
         let questionQuanity = triviaData.length
-        
-        let randomIndex = Math.floor(Math.random()*questionQuanity)
 
-        let randomQuestion = triviaData.splice(randomIndex, 1) // question is also removed from array to prevent duplicate question
+        if(questionQuanity > 0){
 
-        this.setState({
-            randomQuestion: randomQuestion[0],
-            questionCount: this.state.questionCount + 1
-        })
+            let randomIndex = Math.floor(Math.random()*questionQuanity)
 
+            let randomQuestion = triviaData.splice(randomIndex, 1) // question is also removed from array to prevent duplicate question
+
+            this.setState({
+                randomQuestion: randomQuestion[0],
+                questionCount: this.state.questionCount + 1
+            })
+        }else {
+            console.log("Need to jump to Results Screen")
+        }        
     }
 
     checkAnswer = (event) => {
-        event.target.value == this.state.randomQuestion.correct_answer ? console.log("Right") : console.log("Wrong")
+        event.target.value === this.state.randomQuestion.correct_answer ? console.log("Right") : console.log("Wrong")
     }
 
 
