@@ -46,7 +46,7 @@ export default class QuizScreen extends Component {
 
         this.setState({
             randomQuestion: randomQuestion[0],
-             questionCount: this.state.questionCount + 1
+            questionCount: this.state.questionCount + 1,
          })       
     }
 
@@ -54,22 +54,33 @@ export default class QuizScreen extends Component {
         event.target.value === this.state.randomQuestion.correct_answer ? console.log("Right") : console.log("Wrong")
     }
 
+
     checkQuizCompleteStatus = () => {
         if(this.state.triviaData.length >= 0 && this.state.randomQuestion !== undefined){
-            return  <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion} questionCount={this.state.questionCount} checkAnswer={this.checkAnswer}/> 
+            return  <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion} questionCount={this.state.questionCount} checkAnswer={this.checkAnswer} handleQuizComplete={this.handleQuizComplete}/> 
         } else{
             return  <ResultsScreen/>
         }
         // need to factor in quiz complete or not to attempt rerouting
     }
 
+    componentDidUpdate = (prevProps, prevState) => {
+        if(prevState.questionCount !== this.state.questionCount ){
+            if(this.state.triviaData.length === 0){
+                this.setState({quizComplete: true})
+            }
+        }
+    }
+
     render() {
-        console.log(this.state.triviaData.length)
-        console.log(this.state.randomQuestion)
-       
+        
+        // let whichPage
+        // whichPage = this.state.triviaData.length >= 0 && this.state.randomQuestion !== undefined ? <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion} questionCount={this.state.questionCount} checkAnswer={this.checkAnswer}/> : <ResultsScreen/>
         return (
             <div>
                 {this.checkQuizCompleteStatus()}
+                {/* {whichPage} */}
+                {/* <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion} questionCount={this.state.questionCount} checkAnswer={this.checkAnswer}/> */}
             </div>
         )
     }
