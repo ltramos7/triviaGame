@@ -8,7 +8,6 @@ import HomeScreen from './components/HomeScreen/index'
 
 
 export default class App extends Component {
-
   render() {
     return (
       <div>

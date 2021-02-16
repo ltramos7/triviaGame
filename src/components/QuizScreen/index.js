@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import QuestionCard from '../QuestionCard';
-import ResultsScreen from '../ResultsScreen'
-
-import axios from 'axios'
 import { BrowserRouter as Router } from "react-router-dom";
 import { Route, Redirect } from 'react-router-dom';
+import axios from 'axios'
+
+import QuestionCard from '../QuestionCard';
+import ResultsScreen from '../ResultsScreen'
 
 export default class QuizScreen extends Component {
 
