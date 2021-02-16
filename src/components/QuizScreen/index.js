@@ -11,7 +11,8 @@ export default class QuizScreen extends Component {
         this.state = {
             triviaData: [],
             randomQuestion: {},
-            questionCount: 1
+            questionCount: 1,
+            quizComplete: false
         }
     }      
 
@@ -53,15 +54,22 @@ export default class QuizScreen extends Component {
         event.target.value === this.state.randomQuestion.correct_answer ? console.log("Right") : console.log("Wrong")
     }
 
+    checkQuizCompleteStatus = () => {
+        if(this.state.triviaData.length >= 0 && this.state.randomQuestion !== undefined){
+            return  <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion} questionCount={this.state.questionCount} checkAnswer={this.checkAnswer}/> 
+        } else{
+            return  <ResultsScreen/>
+        }
+        // need to factor in quiz complete or not to attempt rerouting
+    }
+
     render() {
         console.log(this.state.triviaData.length)
         console.log(this.state.randomQuestion)
-        let whichPage
-        whichPage = this.state.triviaData.length >= 0 && this.state.randomQuestion !== undefined ? <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion} questionCount={this.state.questionCount} checkAnswer={this.checkAnswer}/> : <ResultsScreen/>
+       
         return (
             <div>
-                {whichPage}
-                {/* <QuestionCard randomQuestion={this.state.randomQuestion} retrieveNewRandomQuestion={this.retrieveNewRandomQuestion} questionCount={this.state.questionCount} checkAnswer={this.checkAnswer}/> */}
+                {this.checkQuizCompleteStatus()}
             </div>
         )
     }
