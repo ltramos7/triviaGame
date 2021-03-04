@@ -19,7 +19,7 @@ export default class QuizScreen extends Component {
     }      
 
     componentDidMount = () => {
-        axios.get("https://opentdb.com/api.php?amount=10&difficulty=hard&type=boolean")
+        axios.get("https://opentdb.com/api.php?amount=10&difficulty=easy&type=boolean")
           .then(resp => this.setState({triviaData: resp.data.results, randomQuestion: this.selectRandomQuestion(resp.data.results)}))
     }
 
